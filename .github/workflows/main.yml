@@ -1,0 +1,22 @@
+name: End-to-end Tests
+on: [push] # Runs on every push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          # This starts the tests
+          command: npx cypress run --browser chrome
+          
+      - name: Upload Test Report
+        if: always() # Ensures reports are uploaded even if a test fails
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-report
+          path: cypress/reports/html/ # Matches your Mochawesome path

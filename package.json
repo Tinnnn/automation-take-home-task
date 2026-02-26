@@ -1,10 +1,14 @@
 {
-  "name": "matomo-tech-assessment",
+  "name": "automation-take-home-task",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "npm run cypress:run",
+    "report:merge": "mochawesome-merge cypress/reports/html/*.json > cypress/reports/report.json",
+    "report:generate": "marge cypress/reports/report.json --reportDir cypress/reports/html --assetsDir cypress/reports/html/assets --reportPageTitle 'Matomo Test Report' --inline"
   },
   "keywords": [],
   "author": "",
