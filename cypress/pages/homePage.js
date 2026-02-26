@@ -52,7 +52,10 @@ export default class HomePage{
             }  }).then((resp) => {
                 // 400/403 responses are often bot-blocked; log them but do not fail the test
                 const isBotBlocked = resp.status === 400 || resp.status === 403
-                const isKnownBotBlock = href.includes('facebook.com') || href.includes('capterra.com') || href.includes('softwareadvice.com')
+                const isKnownBotBlock = href.includes('facebook.com') ||
+                                        href.includes('capterra.com') ||
+                                        href.includes('softwareadvice.com') ||
+                                        href.includes('getapp.com')
                 
                 // Log potential bot-blocking issues for known domains, but do not treat them as test failures
                 if (isBotBlocked && isKnownBotBlock) {
